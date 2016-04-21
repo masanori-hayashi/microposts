@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
   
+  before_action :set_user, only: [:show, :edit, :update]
+  before_action :collect_user, only: [:edit, :update]
+  
   def show
-    @user = User.find(params[:id])
   end
   
   def new
@@ -19,19 +21,27 @@ class UsersController < ApplicationController
   end
   
   def edit
-    @user = User.find(params[:id])
   end
   
   def update
-    @user = User.find(params[:id])
-    if @user.update_attributes(user_params)
-      
+    if @user.update(user_params)
+      redirect_to user_path(@user)
     else
       render 'edit'
     end
   end
   
   private
+  
+  def set_user
+    @user = User.find(params[:id])
+  end    
+  
+  def collect_user
+    # 自分　= current_user
+    # 編集しようとしているユーザー　＝　@user
+    redirect_to root_path if current_user != @user
+  end
   
   
   def user_params
