@@ -9,11 +9,21 @@ class User < ActiveRecord::Base
   validates :profile, length: { maximum: 50 }
   has_secure_password
   has_many :microposts
+  # @user.microposts ← Micropost.where(user_id: @user.id)
+  # @user.microposts.create({content: 'hogehoge'})
+  # ↑ Micropost.create({content: 'hogehoge', user_id: @user.id})
     
   has_many :following_relationships, class_name:  "Relationship",
                                        foreign_key: "follower_id",
                                        dependent:   :destroy
+  # @user.following_relationships ← Relationship.where(follower_id: @user.id)  
   has_many :following_users, through: :following_relationships, source: :followed
+  # @user.following_users
+  # followed_ids = []
+  # Relationship.where(follower_id: @user.id).each do |r|
+  #   followed_ids << r.followed_id
+  # end
+  # User.find(folowed_ids)
     
   has_many :follower_relationships, class_name:  "Relationship",
                                       foreign_key: "followed_id",
