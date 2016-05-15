@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   
-  before_action :set_user, only: [:show, :edit, :update,:following, :followers]
+  before_action :set_user, only: [:show, :edit, :update, :following, :followers, :like, :unlike]
   before_action :collect_user, only: [:edit, :update]
   
   def show

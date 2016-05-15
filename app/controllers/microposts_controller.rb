@@ -20,6 +20,11 @@ class MicropostsController < ApplicationController
     redirect_to request.referrer || root_url
   end
   
+  def liked_users
+    @micropost = Micropost.find(params[:id])
+    @users = @micropost.users
+  end
+  
   
   private
   def micropost_params

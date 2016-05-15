@@ -1,0 +1,2 @@
+console.log($("#like_form-<%= @micropost.id %>"));
+$("#like_form-<%= @micropost.id %>").html("<%= escape_javascript(render('users/like', micropost: @micropost)) %>");

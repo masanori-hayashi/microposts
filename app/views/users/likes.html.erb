@@ -1,0 +1,11 @@
+<h1>like</h1>
+
+<% @like.each do |like| %>
+  <a>
+    <%= link_to user.name, user_path(user) %>
+    <%= link_to gravatar_for(@user, size: 40), user_path(user) %>
+  </a>
+  <br>
+  <br>
+  <br>
+<% end %>

@@ -1,0 +1,10 @@
+<h1>Like users</h1>
+<ol>
+<% @users.each do |user| %>
+  <li><%= link_to user.name, user_path(user) %></li>
+  <%= link_to gravatar_for(user, size: 40), user_path(user) %></li>
+  <br>
+  <br>
+  <br>
+<% end %>
+</ol>

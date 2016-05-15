@@ -17,7 +17,12 @@ Rails.application.routes.draw do
   end
 
   resources :sessions, only: [:new, :create, :destroy]
-  resources :microposts
+  resources :microposts do
+    member do
+      get 'liked_users'
+    end
+  end
+  # resources :likes
   # get 'index', to: 'micropost#index'       # /microposts
   # get 'show', to: 'micropost#show'         # /microposts/1
   # get 'new', to: 'micropost#new'           # /microposts/new
@@ -26,4 +31,5 @@ Rails.application.routes.draw do
   # patch 'update', to: 'micropost#update'   # /microposts/1
   # delte 'destroy', to: 'micropost#destroy' # /microposts/1
   resources :relationships, only: [:create, :destroy]
+  resources :likes, only: [:create, :destroy]
 end
