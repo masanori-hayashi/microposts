@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
   
   has_many :like_microposts, through: :likes, class_name: 'Micropost'
   
-  has_many :microposts, through: :likes, source: :micropost
+  has_many :likes_microposts, through: :likes, source: :micropost
     
   # 他のユーザーをフォローする
   def follow(other_user)
